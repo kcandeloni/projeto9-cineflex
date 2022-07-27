@@ -1,6 +1,6 @@
 import List from "./List";
 
-export default function Iniciar ({setId}) {
+export default function Iniciar () {
 
     return (
         <>
@@ -8,7 +8,7 @@ export default function Iniciar ({setId}) {
             <h2>Selecione o Filme</h2>
             </div>
             <div>
-                <List setId={setId} />
+                <List />
             </div>
         </>
     );
