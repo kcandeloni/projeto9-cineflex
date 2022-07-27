@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 import axios from 'axios';
 
-function Box ({movie}){
+function Box ({movie, setId}){
+
     return(
-        <div key={movie.id}className="box-title">
+        <Link to='/filme/' onClick={() => setId(movie.id)}><div key={movie.id}className="box-title">
             <img src={movie.posterURL} alt={movie.title}/>        
-        </div>
+        </div></Link>
     );
 }
 
-export default function List () {
+export default function List ({setId}) {
 
     const [movies, setMovies] = useState([]);
 
@@ -24,7 +26,7 @@ export default function List () {
         <>
             {movies ? (
             <div className="titles">
-                {movies.map((movie,index) => <Box movie={movie}/>)}
+                {movies.map((movie,index) => <Box setId={setId} movie={movie}/>)}
             </div>) :<h2>Loading...</h2>}
         </>
     );
