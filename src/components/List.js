@@ -26,7 +26,7 @@ export default function List () {
         <>
             {movies ? (
             <div className="titles">
-                {movies.map((movie,index) => <Box movie={movie}/>)}
+                {movies.map((movie,index) => <Box key={index} movie={movie}/>)}
             </div>) :<h2>Loading...</h2>}
         </>
     );

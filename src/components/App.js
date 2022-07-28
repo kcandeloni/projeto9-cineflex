@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import '../assets/css/reset.css'
 import '../assets/css/style.css'
 import React from 'react';
 
@@ -6,6 +7,7 @@ import React from 'react';
 import Iniciar from './Iniciar.js';
 import Filme from './Filme';
 import Topo from './Topo';
+import Sessao from './Sessao';
 
 export default function App() {
 
@@ -15,6 +17,7 @@ export default function App() {
         <Routes>
           <Route path='/' element={<Iniciar />}/>
           <Route path='/filme/:filmeId' element={<Filme />}/>
+          <Route path='/sessao/:sessaoId' element={<Sessao />}/>
         </Routes>
       </BrowserRouter>
     );
