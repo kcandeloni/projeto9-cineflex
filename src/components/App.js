@@ -15,7 +15,7 @@ export default function App() {
   const requisicao = {
     ids: [],
     name: '',
-    cpf: '',
+    cpf: '00000000000',
   };
 
   const info = {

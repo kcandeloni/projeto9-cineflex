@@ -35,16 +35,25 @@ function Ingresso ({ids}) {
 }
 
 function Comprador ({nome,cpf}) {
+    let newCPF = '';
+    for(let i = 0; i < cpf.length; i++){
+        if(i % 3 === 0){
+            if(i === 9){
+                newCPF += '-';
+            }else{
+                newCPF +='.';
+            }
+        }
+        newCPF += cpf[i];
+    }
     return(
         <div>
         <h2>Comprador</h2>
         <p>Nome: {nome}</p>
-        <p>CPF: {cpf}</p>
+        <p>CPF: {newCPF}</p>
         </div>
     );
 }
-
-
 
 export default function PedidoFinalizado({requisicao, info}) {
 
@@ -74,8 +83,14 @@ export default function PedidoFinalizado({requisicao, info}) {
     }
 
       <Link to={`/`}>
-          <button onClick={() => {requisicao.name= '';
-      requisicao.cpf='';requisicao.ids=[]}} className="button-envia">Reservar Assento(s)</button>
+          <button onClick={() => {
+            requisicao.name='';
+            requisicao.cpf='';
+            requisicao.ids=[];
+            info.title ='';
+            info.date ='';
+            info.name ='';
+      }} className="button-envia">Reservar Assento(s)</button>
           </Link>
     </div>
   );
