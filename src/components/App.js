@@ -18,14 +18,20 @@ export default function App() {
     cpf: '',
   };
 
+  const info = {
+    title: '',
+    date: '',
+    name: '',
+  };
+
     return (
       <BrowserRouter>
         <Topo />
         <Routes>
           <Route path='/' element={<Iniciar />}/>
           <Route path='/filme/:filmeId' element={<Filme />}/>
-          <Route path='/sessao/:sessaoId' element={<Sessao requisicao={requisicao}/>}/>
-          <Route path='/sucesso' element={<PedidoFinalizado requisicao={requisicao} />}/>
+          <Route path='/sessao/:sessaoId' element={<Sessao requisicao={requisicao} info={info} />}/>
+          <Route path='/sucesso' element={<PedidoFinalizado requisicao={requisicao} info={info} />}/>
         </Routes>
       </BrowserRouter>
     );

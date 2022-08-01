@@ -14,16 +14,18 @@ function Mensagem ({status}) {
     );
 }
 
-function InfoFilme () {
+function InfoFilme ({title, name, date}) {
     return(
         <div>
         <h2>Filme e Sessão</h2>
-            
+            <p>{title}</p>
+            <p>{date} {name}</p>
         </div>
     );
 }
 
 function Ingresso ({ids}) {
+    ids = ids.map(id => {while(id > 50){ id -= 50} return id})
     return(
         <div>
         <h2>Ingresso(s)</h2>
@@ -44,7 +46,7 @@ function Comprador ({nome,cpf}) {
 
 
 
-export default function PedidoFinalizado({requisicao}) {
+export default function PedidoFinalizado({requisicao, info}) {
 
     const [validaPost, setValidaPost] = useState({});
 
@@ -63,7 +65,7 @@ export default function PedidoFinalizado({requisicao}) {
       { !!validaPost.status ? <>
         <Mensagem status={validaPost.status}/>
         <div className='info'>
-            <InfoFilme />
+            <InfoFilme {...info}/>
             <Ingresso ids={requisicao.ids}/>
             <Comprador nome={requisicao.name} cpf={requisicao.cpf}/>
         </div>

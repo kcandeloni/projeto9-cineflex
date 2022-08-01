@@ -299,11 +299,15 @@ a:-webkit-any-link {
     width: 150px;
 }
 
+.mensagemPost h2 {
+    text-align: center;
+}
+
 .sucesso h2{
     font-weight: 700;
     font-size: 24px;
     line-height: 28px;
-    text-align: center;
+    margin-top: 30px;
 }
 
 .ok{  

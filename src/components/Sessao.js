@@ -26,7 +26,7 @@ assento.isAvailable ? <div onClick={() => {setIsSelected(!isSelected); reservaAs
     );
 }
 
-export default function Sessao ({requisicao}) {
+export default function Sessao ({requisicao, info}) {
     const {sessaoId} = useParams();
 
     const [sessao, setSessao] = useState({});
@@ -38,12 +38,16 @@ export default function Sessao ({requisicao}) {
 			setSessao(resposta.data);
 		});
 	}, []);
-
+    if(!!sessao.movie){
+        info.title = sessao.movie.title;
+        info.date = sessao.day.date;
+        info.name = sessao.name;
+    }
     return (
         <>
             <div className='mid'>
                 <div className='assentos'>
-                    {!!sessao.seats ? sessao.seats.map((assento,index) => <RederAssento key={index} assento={assento} requisicao={requisicao}/>) : <h2>Loading...mid</h2>}
+                    {!!sessao.seats ? sessao.seats.map((assento,index) => <RederAssento key={index} assento={assento} requisicao={requisicao} />) : <h2>Loading...mid</h2>}
                 </div>
                 <div className='exemplo-disponibilidade'>
                     <div><div className={`assento assento-selecionado`}></div><p>Selecionado</p></div>
