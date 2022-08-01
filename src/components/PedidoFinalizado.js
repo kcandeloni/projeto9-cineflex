@@ -67,8 +67,6 @@ export default function PedidoFinalizado({requisicao, info}) {
 		});
 	}, []);
     
-    console.log(validaPost)
-    console.log(requisicao)
   return (
     <div className='sucesso'>
       { !!validaPost.status ? <>
