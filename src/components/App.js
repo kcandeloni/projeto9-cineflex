@@ -8,8 +8,15 @@ import Iniciar from './Iniciar.js';
 import Filme from './Filme';
 import Topo from './Topo';
 import Sessao from './Sessao';
+import PedidoFinalizado from "./PedidoFinalizado";
 
 export default function App() {
+
+  const requisicao = {
+    ids: [],
+    name: '',
+    cpf: '',
+  };
 
     return (
       <BrowserRouter>
@@ -17,7 +24,8 @@ export default function App() {
         <Routes>
           <Route path='/' element={<Iniciar />}/>
           <Route path='/filme/:filmeId' element={<Filme />}/>
-          <Route path='/sessao/:sessaoId' element={<Sessao />}/>
+          <Route path='/sessao/:sessaoId' element={<Sessao requisicao={requisicao}/>}/>
+          <Route path='/sucesso' element={<PedidoFinalizado requisicao={requisicao} />}/>
         </Routes>
       </BrowserRouter>
     );

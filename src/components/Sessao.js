@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import ExibeTitulo from './ExibeTitulo';
+import Formulario from './Formulario';
 
 function reservaAssento (id, requisicao) {
     let index = requisicao.ids.indexOf(id);
@@ -19,21 +21,12 @@ function RederAssento ({assento, requisicao}) {
         selecionado = 'assento-selecionado';
     }
     return(
-         assento.isAvailable ? <div onClick={() => (setIsSelected(!isSelected), reservaAssento(assento.id, requisicao))} key={assento.id} className={`assento ${selecionado}`}>{assento.name}</div> : 
+assento.isAvailable ? <div onClick={() => {setIsSelected(!isSelected); reservaAssento(assento.id, requisicao)}} key={assento.id} className={`assento ${selecionado}`}>{assento.name}</div> : 
         <div onClick={() => alert('Esse assento não está disponível')} key={assento.id} className={`assento assento-indisponivel`}>{assento.name}</div>
     );
 }
 
-function Assentos ({seats, requisicao}){
-
-    return(
-        <div className='assentos'>
-        {!!seats ? (seats.map((assento,index) => <RederAssento key={index} assento={assento} requisicao={requisicao}/> )) : <h2>Loading...</h2> }
-        </div>
-    );
-}
-
-export default function Sessao () {
+export default function Sessao ({requisicao}) {
     const {sessaoId} = useParams();
 
     const [sessao, setSessao] = useState({});
@@ -45,17 +38,25 @@ export default function Sessao () {
 			setSessao(resposta.data);
 		});
 	}, []);
-    const requisicao = {
-        ids: [],
-        nome: '',
-        cpf: 0,
-    };
+
     return (
         <>
             <div className='mid'>
-            {sessao ? <Assentos seats={sessao.seats} requisicao={requisicao}/> : <h2>Loading...</h2>}
+                <div className='assentos'>
+                    {!!sessao.seats ? sessao.seats.map((assento,index) => <RederAssento key={index} assento={assento} requisicao={requisicao}/>) : <h2>Loading...mid</h2>}
+                </div>
+                <div className='exemplo-disponibilidade'>
+                    <div><div className={`assento assento-selecionado`}></div><p>Selecionado</p></div>
+                    <div><div className={`assento`}></div><p>Disponível</p></div>
+                    <div><div className={`assento assento-indisponivel`}></div><p>Indisponível</p></div>
+                </div>
+            <Formulario requisicao={requisicao}/>
             </div>
+            {!!sessao.movie ? <ExibeTitulo 
+                posterURL={sessao.movie.posterURL} 
+                title={sessao.movie.title}
+                date={sessao.day.date}
+                name={sessao.name}/> : <h2>Loading...bot</h2>}
         </>
     );
-    console.log(requisicao)
 }

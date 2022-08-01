@@ -3,15 +3,16 @@ import { Link } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-function HoraSessao ({weekday, date, showtimes}) {
+import ExibeTitulo from './ExibeTitulo';
 
+function HoraSessao ({weekday, date, showtimes}) {
     return(
         <div className='horarios'>
             <p>{weekday} - {date}</p>
                 <div>
                     {showtimes.map(hora => (
-                        <Link to={`/sessao/${hora.id}`} >
-                            <div key={hora.id} className='box-hora'><p>{hora.name}</p></div>
+                        <Link key={hora.id} to={`/sessao/${hora.id}`} >
+                            <div className='box-hora'><p>{hora.name}</p></div>
                         </Link>)
                     )}
                 </div>    
@@ -31,10 +32,9 @@ function Horarios ({title, posterURL, days}){
                     {days ? days.map((horarios,index) => <HoraSessao key={index} {...horarios} />):<h3>Carregando</h3>}
                 </div>
             </div>
-            <div className='box-bot'>
-                <div className='box-title'><img src={posterURL} alt={title} /></div>
-                <h3>{title}</h3>
-            </div>
+            <ExibeTitulo 
+                posterURL={posterURL} 
+                title={title}/>
         </>
     );
 }
