@@ -90,7 +90,7 @@ export default function PedidoFinalizado({requisicao, info}) {
             info.title ='';
             info.date ='';
             info.name ='';
-      }} className="button-envia">Reservar Assento(s)</button>
+      }} className="button-envia">Voltar pra Home</button>
           </Link>
     </div>
   );
