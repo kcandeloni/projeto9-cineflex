@@ -226,6 +226,8 @@ a:-webkit-any-link {
     color: #4E5A65;
 }
 
+/* Formulário */
+
 .title-form {
     font-weight: 400;
     font-size: 18px;
@@ -275,4 +277,54 @@ a:-webkit-any-link {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/*Fim Formulário*/
+
+/* Pedido Finalizado*/
+.sucesso{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mensagemPost{
+    height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mensagemPost div {
+    width: 150px;
+}
+
+.sucesso h2{
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+}
+
+.ok{  
+    color:#247A6B;
+}
+
+.falha{
+    color: #df1405;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    width: 300px;
+}
+
+.info p {
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 26px;
+
+    color: #293845;
 }

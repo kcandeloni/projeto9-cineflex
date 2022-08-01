@@ -13,9 +13,9 @@ import PedidoFinalizado from "./PedidoFinalizado";
 export default function App() {
 
   const requisicao = {
-    ids: [],
-    name: '',
-    cpf: '',
+    ids: [19,20],
+    name: 'aaaa',
+    cpf: 'aa',
   };
 
     return (

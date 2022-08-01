@@ -1,7 +1,48 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+
+
+function Mensagem ({status}) {
+    if(status === 200){
+        return(
+            <div className='mensagemPost ok'><div><h2>Pedido feito com sucesso!</h2></div></div>
+        );
+    }
+    return(
+        <div className='mensagemPost falha'><div><h2>Falha no pedido!!</h2></div></div>
+    );
+}
+
+function InfoFilme () {
+    return(
+        <div>
+        <h2>Filme e Sessão</h2>
+            
+        </div>
+    );
+}
+
+function Ingresso ({ids}) {
+    return(
+        <div>
+        <h2>Ingresso(s)</h2>
+        {ids.map((assento,index) => <p key={index}>Assento {assento}</p>)}
+        </div>
+    );
+}
+
+function Comprador ({nome,cpf}) {
+    return(
+        <div>
+        <h2>Comprador</h2>
+        <p>Nome: {nome}</p>
+        <p>CPF: {cpf}</p>
+        </div>
+    );
+}
+
+
 
 export default function PedidoFinalizado({requisicao}) {
 
@@ -14,11 +55,21 @@ export default function PedidoFinalizado({requisicao}) {
 			setValidaPost(resposta);
 		});
 	}, []);
+    
     console.log(validaPost)
     console.log(requisicao)
   return (
-    <div>
-      
+    <div className='sucesso'>
+      { !!validaPost.status ? <>
+        <Mensagem status={validaPost.status}/>
+        <div className='info'>
+            <InfoFilme />
+            <Ingresso ids={requisicao.ids}/>
+            <Comprador nome={requisicao.name} cpf={requisicao.cpf}/>
+        </div>
+        </>
+    : <h2>Loading...</h2>
+    }
 
       <Link to={`/`}>
           <button onClick={() => {requisicao.name= '';
